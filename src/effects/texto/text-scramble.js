@@ -12,7 +12,7 @@ Usa requestAnimationFrame; expón setText(nuevo) para transiciones. Dispara al e
     const s=document.createElement('div');s.className='stage';
     s.innerHTML='<div style="height:100%;display:grid;place-items:center"><span id="sc" style="font-family:monospace;font-size:26px;font-weight:700;color:#00e0c6;letter-spacing:.05em"></span></div>';
     el.appendChild(s);const node=s.querySelector('#sc');
-    const words=['INITIALIZE','DEPLOY','MOTION LAB','RENDER OK'],chars='!<>-_\\/[]{}=+*^?#@';
+    const words=['INITIALIZE','DEPLOY','ANIMAI','RENDER OK'],chars='!<>-_\\/[]{}=+*^?#@';
     let wi=0,raf,run=true;
     function play(target){const len=target.length,queue=[];let frame=0;
       for(let i=0;i<len;i++)queue.push({to:target[i],start:Math.floor(Math.random()*20),end:20+Math.floor(Math.random()*30)});

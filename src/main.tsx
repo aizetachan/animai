@@ -5,13 +5,16 @@ import './styles/global.css';
 import Landing from './routes/Landing';
 import Gallery from './routes/Gallery';
 import { ITEMS, CAT_ORDER } from './effects';
+import { LanguageProvider } from './contexts/LanguageContext';
+import CookieBanner from './components/CookieBanner';
+import GlobalBackground from './components/GlobalBackground';
 
 /* Guard global: una preview que falle no debe tumbar la página entera. */
 window.addEventListener('error', (ev) => {
-  console.warn('[motion-lab] error capturado:', ev.message);
+  console.warn('[animai] error capturado:', ev.message);
 });
 window.addEventListener('unhandledrejection', (ev) => {
-  console.warn('[motion-lab] promesa rechazada:', ev.reason);
+  console.warn('[animai] promesa rechazada:', ev.reason);
 });
 
 /* Red de seguridad: valida integridad del catálogo al cargar (solo avisa). */
@@ -28,7 +31,7 @@ window.addEventListener('unhandledrejection', (ev) => {
     else titles.add(it.title);
     if (!CAT_ORDER.includes(it.cat)) orphan.add(it.cat);
   }
-  const tag = '[Motion Lab]';
+  const tag = '[Animai]';
   console.log(`${tag} ${ITEMS.length} efectos cargados en ${new Set(ITEMS.map((i) => i.cat)).size} categorías.`);
   if (dupId.length) console.warn(`${tag} IDs duplicados:`, dupId);
   if (dupTitle.length) console.warn(`${tag} Títulos duplicados:`, dupTitle);
@@ -42,6 +45,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <LanguageProvider>
+      <GlobalBackground />
+      <RouterProvider router={router} />
+      <CookieBanner />
+    </LanguageProvider>
   </React.StrictMode>
 );

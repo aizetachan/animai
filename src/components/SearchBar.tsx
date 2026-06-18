@@ -1,3 +1,5 @@
+import { useLanguage } from '../contexts/LanguageContext';
+
 interface Props {
   value: string;
   onChange: (v: string) => void;
@@ -7,6 +9,8 @@ interface Props {
 }
 
 export default function SearchBar({ value, onChange, count, total, filtered }: Props) {
+  const { t } = useLanguage();
+
   return (
     <div className="wrap">
       <div className="search">
@@ -18,20 +22,20 @@ export default function SearchBar({ value, onChange, count, total, filtered }: P
           type="text"
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          placeholder="Buscar: gradiente, scroll, morph, hover, partículas…"
+          placeholder={t('search.placeholder')}
           autoComplete="off"
-          aria-label="Buscar efectos"
+          aria-label={t('search.label')}
         />
       </div>
       <div className="count">
         <span>{count}</span>
         {filtered && (
           <>
-            <span> de </span>
+            <span>{t('search.of')}</span>
             <span>{total}</span>
           </>
         )}{' '}
-        efectos
+        {t('search.effects')}
       </div>
     </div>
   );

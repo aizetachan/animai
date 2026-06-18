@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "Motion Lab — catálogo de animaciones para landing pages (Nakama Studio)",
+  "description": "Animai — catálogo de animaciones para landing pages (Nakama Studio)",
   "scripts": {
     "extract": "node scripts/extract.mjs",
     "validate": "node scripts/validate.mjs",
@@ -13,6 +13,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "firebase": "^12.15.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.2"

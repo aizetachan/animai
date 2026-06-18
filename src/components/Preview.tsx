@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import type { Effect, PreviewHandle } from '../effects/types';
 import { observePreview } from '../lib/previewObserver';
 import { prefersReducedMotion, onReducedMotionChange } from '../lib/reducedMotion';
+import { useLanguage } from '../contexts/LanguageContext';
+import { logEffectView, logEffectInteraction } from '../lib/analytics';
 
 interface Props {
   effect: Effect;
@@ -23,6 +25,7 @@ export default function Preview({ effect, badge = true, className = '' }: Props)
   const [failed, setFailed] = useState(false);
   const [paused, setPaused] = useState(reduced); // pausado manualmente (reduced-motion)
   const visibleRef = useRef(false);
+  const { t } = useLanguage();
 
   useEffect(() => onReducedMotionChange(setReduced), []);
 
@@ -34,8 +37,9 @@ export default function Preview({ effect, badge = true, className = '' }: Props)
       if (handleRef.current || paused) return;
       try {
         handleRef.current = effect.render(host);
+        logEffectView(effect.id, effect.title);
       } catch (err) {
-        console.warn('[motion-lab] preview ' + effect.id + ' falló:', err);
+        console.warn('[animai] preview ' + effect.id + ' falló:', err);
         setFailed(true);
       }
     };
@@ -70,17 +74,17 @@ export default function Preview({ effect, badge = true, className = '' }: Props)
 
   const playOnce = () => {
     setPaused(false);
-    // el efecto arrancará en el siguiente render si está visible.
+    logEffectInteraction(effect.id, effect.title, 'play_manual');
   };
 
   return (
     <div className={'preview ' + className}>
-      {badge && <div className="badge">{effect.cat}</div>}
+      {badge && <div className="badge">{t('cat.' + effect.cat)}</div>}
       <div ref={hostRef} className="preview-host" />
-      {failed && <div className="preview-msg">preview no disponible</div>}
+      {failed && <div className="preview-msg">{t('preview.unavailable')}</div>}
       {paused && !failed && (
-        <button className="preview-play" onClick={playOnce} aria-label="Reproducir animación">
-          <span>▶</span> Movimiento reducido · pulsa para reproducir
+        <button className="preview-play" onClick={playOnce} aria-label={t('preview.play_animation')}>
+          <span>▶</span> {t('preview.reduced_motion')}
         </button>
       )}
     </div>

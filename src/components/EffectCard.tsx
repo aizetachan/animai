@@ -3,11 +3,14 @@ import type { EffectEntry } from '../effects/types';
 import Preview from './Preview';
 import { deriveCode } from '../lib/deriveCode';
 import { highlight } from '../lib/highlight';
+import { useLanguage } from '../contexts/LanguageContext';
+import { logEffectInteraction } from '../lib/analytics';
 
 export default function EffectCard({ effect }: { effect: EffectEntry }) {
   const [showCode, setShowCode] = useState(false);
   const [copied, setCopied] = useState(false);
   const codeStr = useMemo(() => deriveCode(effect), [effect]);
+  const { t } = useLanguage();
 
   const copy = () => {
     const txt = showCode ? codeStr : effect.prompt;
@@ -16,6 +19,7 @@ export default function EffectCard({ effect }: { effect: EffectEntry }) {
       .then(() => {
         setCopied(true);
         setTimeout(() => setCopied(false), 1400);
+        logEffectInteraction(effect.id, effect.title, showCode ? 'copy_code' : 'copy_prompt');
       })
       .catch(() => {});
   };
@@ -28,12 +32,18 @@ export default function EffectCard({ effect }: { effect: EffectEntry }) {
         <p className="desc">{effect.desc}</p>
         <div className="prompt-wrap">
           <div className="prompt-head">
-            <span className="lbl">{showCode ? 'Código' : 'Prompt'}</span>
+            <span className="lbl">{showCode ? t('card.code') : t('card.prompt')}</span>
             <div className="actions">
               <button
                 className={'toggle' + (showCode ? ' on' : '')}
-                title={showCode ? 'Ver prompt' : 'Ver código'}
-                onClick={() => setShowCode((v) => !v)}
+                title={showCode ? t('card.view_prompt') : t('card.view_code')}
+                onClick={() => {
+                  const next = !showCode;
+                  setShowCode(next);
+                  if (next) {
+                    logEffectInteraction(effect.id, effect.title, 'toggle_code');
+                  }
+                }}
                 aria-pressed={showCode}
               >
                 {showCode ? (
@@ -51,14 +61,14 @@ export default function EffectCard({ effect }: { effect: EffectEntry }) {
               </button>
               <button className={'copy' + (copied ? ' done' : '')} onClick={copy}>
                 {copied ? (
-                  '✓ Copiado'
+                  t('card.copied')
                 ) : (
                   <>
                     <svg viewBox="0 0 24 24">
                       <rect x="9" y="9" width="12" height="12" rx="2" />
                       <path d="M5 15V5a2 2 0 0 1 2-2h10" />
                     </svg>
-                    Copiar
+                    {t('card.copy')}
                   </>
                 )}
               </button>

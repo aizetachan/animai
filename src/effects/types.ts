@@ -3,7 +3,7 @@ export interface PreviewHandle {
   stop(): void;
 }
 
-/** Un efecto del catálogo Motion Lab. */
+/** Un efecto del catálogo Animai. */
 export interface Effect {
   /** único, kebab-case */
   id: string;

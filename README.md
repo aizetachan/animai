@@ -1,4 +1,4 @@
-# Motion Lab
+# Animai
 
 Catálogo/galería web de animaciones y efectos para landing pages, de **Nakama Studio**.
 219 efectos en 12 categorías, cada uno con **preview en vivo real** y un toggle que alterna
