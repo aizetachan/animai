@@ -4,25 +4,27 @@ import { ITEMS } from '../effects';
 import type { Effect } from '../effects/types';
 
 export default function HeroFloatingPreviews() {
-  const [isDesktop, setIsDesktop] = useState(false);
+  // Number of previews to mount: 9 on desktop, a reduced set on mobile/tablet
+  // (mobile shows the first 4 cards — two above and two below the hero text).
+  const [cardCount, setCardCount] = useState(0);
   const [cardEffects, setCardEffects] = useState<Effect[]>([]);
 
-  // Check screen size to avoid mounting canvas elements on mobile devices
+  // Pick how many canvas previews to mount based on the viewport width
   useEffect(() => {
     const checkSize = () => {
-      setIsDesktop(window.innerWidth > 768);
+      setCardCount(window.innerWidth > 768 ? 9 : 4);
     };
     checkSize();
     window.addEventListener('resize', checkSize, { passive: true });
     return () => window.removeEventListener('resize', checkSize);
   }, []);
 
-  // Initialize 9 random distinct effects from ITEMS on mount
+  // Initialize random distinct effects from ITEMS whenever the count changes
   useEffect(() => {
-    if (!isDesktop) return;
+    if (cardCount === 0) return;
     const shuffled = [...ITEMS].sort(() => 0.5 - Math.random());
-    setCardEffects(shuffled.slice(0, 9));
-  }, [isDesktop]);
+    setCardEffects(shuffled.slice(0, cardCount));
+  }, [cardCount]);
 
   // Method to replace a clicked card with a new random unused effect
   const changeEffect = (index: number) => {
@@ -76,7 +78,7 @@ export default function HeroFloatingPreviews() {
   const currentDragOffset = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
-    if (!isDesktop || cardEffects.length === 0) return;
+    if (cardEffects.length === 0) return;
 
     // Track mouse coordinates normalized between [-0.5, 0.5]
     const handleMouseMove = (e: MouseEvent) => {
@@ -124,7 +126,7 @@ export default function HeroFloatingPreviews() {
       window.removeEventListener('mousemove', handleMouseMove);
       cancelAnimationFrame(rafId);
     };
-  }, [isDesktop, cardEffects]);
+  }, [cardEffects]);
 
   // Pointer dragging event handlers
   const handlePointerDown = (index: number, e: React.PointerEvent<HTMLDivElement>) => {
@@ -170,11 +172,11 @@ export default function HeroFloatingPreviews() {
     }
   };
 
-  if (!isDesktop || cardEffects.length === 0) return null;
+  if (cardEffects.length === 0) return null;
 
   return (
     <div className="hero-floating-previews" aria-hidden="true">
-      {cardsConfig.map((card, i) => {
+      {cardsConfig.slice(0, cardCount).map((card, i) => {
         const effect = cardEffects[i];
         if (!effect) return null;
 
