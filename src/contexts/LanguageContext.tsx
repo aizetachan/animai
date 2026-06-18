@@ -115,6 +115,7 @@ const translations: Record<Language, Record<string, string>> = {
     'cat.UI Components': 'UI Components',
     'cat.Navegación': 'Navegación',
     'cat.Datos / Charts': 'Datos / Charts',
+    'cat.Creativos': 'Creativos',
     
     // Footer global
     'footer.text': 'Animai · Nakama Studio · diseño UX/UI + producción AI',
@@ -229,6 +230,7 @@ const translations: Record<Language, Record<string, string>> = {
     'cat.UI Components': 'UI Components',
     'cat.Navegación': 'Navigation',
     'cat.Datos / Charts': 'Data / Charts',
+    'cat.Creativos': 'Creative',
     
     // Footer global
     'footer.text': 'Animai · Nakama Studio · UX/UI design + AI production',
@@ -343,6 +345,7 @@ const translations: Record<Language, Record<string, string>> = {
     'cat.UI Components': 'UI 组件',
     'cat.Navegación': '导航栏',
     'cat.Datos / Charts': '数据与图表',
+    'cat.Creativos': '创意特效',
     
     // Footer global
     'footer.text': 'Animai · Nakama Studio · UX/UI 设计 + AI 制作',
