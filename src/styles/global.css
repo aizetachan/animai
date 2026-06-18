@@ -749,6 +749,30 @@ footer code {
   margin-bottom: 22px;
 }
 
+/* Anti-overflow safety net: grid items must be able to shrink below their
+   content size, and long headings/words must wrap instead of forcing width. */
+.feature-grid,
+.cat-grid {
+  min-width: 0;
+}
+.feature,
+.cat-tile {
+  min-width: 0;
+  max-width: 100%;
+}
+h1,
+h2,
+.hero h1,
+.section h2 {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+img,
+canvas,
+video {
+  max-width: 100%;
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     animation: none !important;
