@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAnalytics, Analytics, isSupported } from 'firebase/analytics';
+import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: "AIzaSyA8cy26w_59PKtTc-Yw8Ny8jO0jXR6r8Rw",
@@ -16,6 +17,9 @@ const firebaseConfig = {
 
 // Inicializa Firebase
 const app = initializeApp(firebaseConfig);
+
+// Firestore: almacena las solicitudes/feedback de los usuarios.
+const db = getFirestore(app);
 
 let analytics: Analytics | null = null;
 
@@ -35,5 +39,5 @@ export async function initAnalytics(): Promise<Analytics | null> {
   return null;
 }
 
-export { app, analytics };
+export { app, db, analytics };
 export type { Analytics };
