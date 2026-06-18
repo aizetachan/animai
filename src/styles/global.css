@@ -18,6 +18,7 @@
 html {
   background-color: var(--bg);
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 body {
   background: transparent;
@@ -26,6 +27,7 @@ body {
   -webkit-font-smoothing: antialiased;
   line-height: 1.5;
   padding-top: 60px;
+  overflow-x: hidden;
 }
 a {
   color: inherit;
@@ -883,6 +885,10 @@ footer code {
     padding-left: 16px !important;
     padding-right: 16px !important;
   }
+  /* Tighten nav spacing so logo + actions + lang fit without overflowing */
+  .nav .wrap {
+    gap: 8px;
+  }
   .nav-search {
     max-width: 140px;
   }
@@ -1323,7 +1329,7 @@ footer code {
   position: absolute;
   top: 14px;
   right: 14px;
-  z-index: 2;
+  z-index: 5;
   display: inline-flex;
   align-items: center;
   justify-content: center;

@@ -77,10 +77,6 @@ export default function Landing() {
               <div className="n">{CAT_ORDER.length}</div>
               <div className="l">{t('landing.hero.stats.cats')}</div>
             </div>
-            <div className="stat">
-              <div className="n">0</div>
-              <div className="l">{t('landing.hero.stats.deps')}</div>
-            </div>
           </div>
         </div>
       </section>
