@@ -4,6 +4,7 @@ import { ITEMS, CAT_ORDER, catCount } from '../effects';
 import type { EffectEntry } from '../effects/types';
 import Nav from '../components/Nav';
 import Preview from '../components/Preview';
+import HeroFloatingPreviews from '../components/HeroFloatingPreviews';
 import { useLanguage } from '../contexts/LanguageContext';
 import { logPageView } from '../lib/analytics';
 
@@ -46,6 +47,7 @@ export default function Landing() {
 
       <section className="hero">
         <div className="hero-bg" aria-hidden="true" />
+        <HeroFloatingPreviews />
         <div className="hero-inner wrap">
           <div className="eyebrow">{t('landing.eyebrow')}</div>
           <h1>

@@ -16,7 +16,29 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.home': 'Inicio',
     'nav.gallery': 'Galería',
     'nav.explore': 'Explorar',
-    
+    'nav.request': 'Sugerencias',
+
+    // Request / Feedback Modal
+    'request.button': 'Sugerencias',
+    'request.title': 'Cuéntanos',
+    'request.subtitle': 'Propón una animación, reporta un bug o déjanos cualquier idea.',
+    'request.type.label': '¿De qué se trata?',
+    'request.type.animation': 'Proponer animación',
+    'request.type.bug': 'Reportar un bug',
+    'request.type.other': 'Otro',
+    'request.message.label': 'Tu mensaje',
+    'request.message.placeholder': 'Describe tu propuesta, el bug que encontraste o tu idea…',
+    'request.email.label': 'Email (opcional)',
+    'request.email.placeholder': 'tucorreo@ejemplo.com — por si queremos responderte',
+    'request.submit': 'Enviar',
+    'request.sending': 'Enviando…',
+    'request.cancel': 'Cancelar',
+    'request.close': 'Cerrar',
+    'request.success.title': '¡Gracias!',
+    'request.success.text': 'Hemos recibido tu mensaje. Lo revisaremos pronto.',
+    'request.error': 'No se pudo enviar. Inténtalo de nuevo en un momento.',
+    'request.required': 'Escribe un mensaje antes de enviar.',
+
     // Landing
     'landing.eyebrow': 'Nakama Studio · Animai',
     'landing.hero.title1': 'El catálogo de animaciones',
@@ -105,7 +127,29 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.home': 'Home',
     'nav.gallery': 'Gallery',
     'nav.explore': 'Explore',
-    
+    'nav.request': 'Feedback',
+
+    // Request / Feedback Modal
+    'request.button': 'Feedback',
+    'request.title': 'Tell us',
+    'request.subtitle': 'Suggest an animation, report a bug, or share any idea.',
+    'request.type.label': 'What is it about?',
+    'request.type.animation': 'Suggest an animation',
+    'request.type.bug': 'Report a bug',
+    'request.type.other': 'Other',
+    'request.message.label': 'Your message',
+    'request.message.placeholder': 'Describe your suggestion, the bug you found, or your idea…',
+    'request.email.label': 'Email (optional)',
+    'request.email.placeholder': 'you@example.com — in case we want to reply',
+    'request.submit': 'Send',
+    'request.sending': 'Sending…',
+    'request.cancel': 'Cancel',
+    'request.close': 'Close',
+    'request.success.title': 'Thank you!',
+    'request.success.text': "We've received your message. We'll review it soon.",
+    'request.error': 'Could not send. Please try again in a moment.',
+    'request.required': 'Write a message before sending.',
+
     // Landing
     'landing.eyebrow': 'Nakama Studio · Animai',
     'landing.hero.title1': 'The animation catalog',
@@ -194,7 +238,29 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.home': '首页',
     'nav.gallery': '效果库',
     'nav.explore': '探索',
-    
+    'nav.request': '反馈',
+
+    // Request / Feedback Modal
+    'request.button': '反馈',
+    'request.title': '告诉我们',
+    'request.subtitle': '推荐一个动画、报告 bug，或分享任何想法。',
+    'request.type.label': '关于什么？',
+    'request.type.animation': '推荐动画',
+    'request.type.bug': '报告 bug',
+    'request.type.other': '其他',
+    'request.message.label': '你的留言',
+    'request.message.placeholder': '描述你的建议、你发现的 bug，或你的想法……',
+    'request.email.label': '邮箱（可选）',
+    'request.email.placeholder': 'you@example.com — 方便我们回复你',
+    'request.submit': '发送',
+    'request.sending': '发送中…',
+    'request.cancel': '取消',
+    'request.close': '关闭',
+    'request.success.title': '谢谢！',
+    'request.success.text': '我们已收到你的留言，会尽快查看。',
+    'request.error': '发送失败，请稍后重试。',
+    'request.required': '请先填写留言再发送。',
+
     // Landing
     'landing.eyebrow': 'Nakama Studio · Animai',
     'landing.hero.title1': '让你的落地页',

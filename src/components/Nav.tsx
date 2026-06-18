@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
+import RequestModal from './RequestModal';
 
 interface NavProps {
   query?: string;
@@ -16,6 +17,8 @@ export default function Nav({ query = '', setQuery }: NavProps) {
   const [isExpanding, setIsExpanding] = useState(false);
   const [isFading, setIsFading] = useState(false);
   const [showSearchBehind, setShowSearchBehind] = useState(false);
+
+  const [requestOpen, setRequestOpen] = useState(false);
 
   const [hasLogoAnim, setHasLogoAnim] = useState(!!location.state?.triggerLogoAnim);
   const [isShrinking, setIsShrinking] = useState(false);
@@ -100,6 +103,7 @@ export default function Nav({ query = '', setQuery }: NavProps) {
   const showExploreBtn = !isGallery || hasTargetAnim || hasLogoAnim;
 
   return (
+    <>
     <nav className="nav">
       <div className="wrap">
         <Link 
@@ -112,6 +116,18 @@ export default function Nav({ query = '', setQuery }: NavProps) {
         <span className="spacer" />
 
         <div className="nav-actions-container">
+          <button
+            type="button"
+            className="nav-request-btn"
+            onClick={() => setRequestOpen(true)}
+            aria-label={t('nav.request')}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+            </svg>
+            <span>{t('nav.request')}</span>
+          </button>
+
           {showSearch && (
             <div 
               className={`search nav-search ${(showSearchBehind || hasLogoAnim) ? 'behind' : ''} ${isShrinking ? 'shrinking' : ''} ${isTextFading ? 'text-fading' : ''} ${isInputFading ? 'input-fading' : ''}`}
@@ -160,5 +176,7 @@ export default function Nav({ query = '', setQuery }: NavProps) {
         </select>
       </div>
     </nav>
+    <RequestModal open={requestOpen} onClose={() => setRequestOpen(false)} />
+    </>
   );
 }
