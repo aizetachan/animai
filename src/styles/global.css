@@ -906,6 +906,19 @@ footer code {
     padding: 20px;
     gap: 14px;
   }
+  /* Stack the hero CTA buttons vertically on mobile */
+  .hero-cta {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-cta .btn-primary,
+  .hero-cta .btn-ghost {
+    width: 100%;
+  }
 }
 
 /* ===== Hero Floating Previews ===== */
@@ -1167,6 +1180,27 @@ footer code {
   .floating-card.p6 { right: 2%; top: 12%; }
   .floating-card.p7 { display: none; }
   .floating-card.p8 { display: none; }
+  .floating-card.p9 { display: none; }
+}
+
+/* Mobile: show 4 small previews tucked in the corners — two above and two
+   below the hero text — so they never overlap the centered copy. */
+@media (max-width: 640px) {
+  .floating-card.size-small { width: 78px; height: 60px; }
+  .floating-card.size-medium { width: 96px; height: 76px; }
+  .floating-card.size-large { width: 110px; height: 88px; }
+
+  /* Above the text */
+  .floating-card.p1 { left: 4%; top: 12%; right: auto; bottom: auto; }
+  .floating-card.p3 { right: 4%; top: 11%; left: auto; bottom: auto; }
+  /* Below the text */
+  .floating-card.p2 { left: 4%; bottom: 7%; right: auto; top: auto; }
+  .floating-card.p4 { right: 4%; bottom: 7%; left: auto; top: auto; }
+
+  .floating-card.p5,
+  .floating-card.p6,
+  .floating-card.p7,
+  .floating-card.p8,
   .floating-card.p9 { display: none; }
 }
 
