@@ -16,7 +16,9 @@ import { parse } from 'acorn';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
 const EFFECTS_DIR = resolve(ROOT, 'src/effects');
-const EXPECTED = 219;
+// Mínimo de catálogo (red de seguridad ante borrados accidentales).
+// El total real crece con cada efecto nuevo; aquí solo verificamos que no baje.
+const MIN_EXPECTED = 219;
 
 function walk(dir) {
   const out = [];
@@ -119,8 +121,8 @@ function main() {
     if (cat) perCat[cat] = (perCat[cat] || 0) + 1;
   }
 
-  if (files.length !== EXPECTED)
-    errors.push(`Se esperaban ${EXPECTED} efectos, hay ${files.length}.`);
+  if (files.length < MIN_EXPECTED)
+    errors.push(`Catálogo por debajo del mínimo: ${files.length} < ${MIN_EXPECTED}.`);
 
   if (errors.length) {
     console.error('\n[validate] ❌ ' + errors.length + ' problema(s):');

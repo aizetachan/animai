@@ -37,7 +37,7 @@ export default function Landing() {
     },
     {
       h: t('landing.features.3.h'),
-      p: t('landing.features.3.p'),
+      p: t('landing.features.3.p', { count: ITEMS.length }),
     },
   ];
 
@@ -58,7 +58,7 @@ export default function Landing() {
             {t('landing.hero.title4')}
           </h1>
           <p className="sub">
-            {t('landing.hero.sub')}
+            {t('landing.hero.sub', { count: ITEMS.length })}
           </p>
           <div className="hero-cta">
             <Link to="/gallery" className="btn-primary">
